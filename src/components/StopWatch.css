@@ -1,9 +1,13 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: 10px;
+  padding: 20px;
   text-align: center;
   transform: translateY(50%);
+  -webkit-box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.3);
+  width: 500px;
+  border-radius: 20px;
 }
 
 .stopwatch-timer {
