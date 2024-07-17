@@ -7,28 +7,29 @@ const StopWatch = () => {
   const [timer, setTimer] = useState(0);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const timerRef = useRef(0);
+  const trackTimerRef = useRef(null);
 
   useEffect(() => {
     if (isTimerRunning) {
-      timerRef.current = setInterval(() => {
-        setTimer((prev) => prev + 1);
+      trackTimerRef.current = setInterval(() => {
+        setTimer(Date.now() - timerRef.current);
       }, 10);
-    } else {
-      clearInterval(timerRef.current);
     }
 
     return () => {
-      clearInterval(timerRef.current);
+      clearInterval(trackTimerRef.current);
     };
   }, [isTimerRunning]);
 
   const toggleStartTimer = () => {
     setIsTimerRunning((prev) => !prev);
+    timerRef.current = Date.now() - timer;
   };
 
   const stopTimer = () => {
     setIsTimerRunning(false);
     // To Reset the timer back to 0
+    clearInterval(trackTimerRef.current);
     setTimeout(() => {
       setTimer(0);
     }, 2000);
